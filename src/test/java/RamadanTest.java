@@ -6,10 +6,8 @@ import java.io.IOException;
 
 public class RamadanTest {
     public static void main(String[] args) {
-        // تحديد مسار ملف HTML المؤقت
         String filePath = System.getProperty("user.dir") + "/ramadan_greeting.html";
 
-        // كود HTML + CSS لتصميم تهنئة رمضان مع اسمك
         String htmlContent = """
         <!DOC TYPE html>
         <html lang="ar">
@@ -91,7 +89,6 @@ public class RamadanTest {
         </html>
         """;
 
-        // إنشاء ملف HTML وكتابة المحتوى فيه
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(htmlContent);
         } catch (IOException e) {
@@ -99,24 +96,19 @@ public class RamadanTest {
             return;
         }
 
-        // تشغيل WebDriver
         WebDriver driver = new ChromeDriver();
 
-        // تكبير النافذة
         driver.manage().window().maximize();
 
-        // فتح ملف HTML في المتصفح
         File file = new File(filePath);
         driver.get("file:///" + file.getAbsolutePath());
 
-        // إبقاء المتصفح مفتوحًا لمدة 30 ثانية
         try {
             Thread.sleep(15000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // إغلاق المتصفح
         driver.quit();
     }
 }
